@@ -13,7 +13,7 @@ int enB = 6;
 
 bool movingForward = false;  // Declare a boolean variable to store the state of motion
 
-Servo myServo;  // Create a Servo object to control the servo motor
+Servo myServo;  
 
 void setup() {
   Serial.begin(9600);
@@ -48,7 +48,7 @@ void stopMotors() {
 }
 
 void loop() {
-  // Measure distance using HC-SR04
+  // Measure distance 
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
@@ -58,7 +58,7 @@ void loop() {
   float duration = pulseIn(echoPin, HIGH);
   float distance = (duration / 2) * 0.0343;
 
-  // Motor control based on Serial input
+  // Motor control based 
   if (Serial.available() > 0) {
     char command = Serial.read();
     switch (command) {
@@ -74,17 +74,17 @@ void loop() {
   // Motor control based on distance
   if (distance < 6.0) {
     stopMotors();
-    myServo.write(90);  // Stop the servo at a neutral position (adjust as needed)
+    myServo.write(90);  
   } else {
     if (movingForward) {
       moveForward();
-      myServo.write(180);  // Rotate the servo slowly in one direction (adjust as needed)
+      myServo.write(180); 
     } else {
       stopMotors();
-      myServo.write(90);  // Stop the servo at a neutral position (adjust as needed)
+      myServo.write(90);  
     }
   }
 
-  delay(100);  // Add a delay for stability
+  delay(100); 
 }
 
